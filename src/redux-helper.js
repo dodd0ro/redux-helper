@@ -7,16 +7,16 @@ export default class ReduxHelper {
     const actions = options.actions;
     const selectors = options.selectors;
     const middlevares = options.middlevareArr || [];
-    const isDebug = options.isDebug || false;
+    const debug = options.debug || false;
 
-    this.store = this._createStore(reducers, middlevares, isDebug);
+    this.store = this._createStore(reducers, middlevares, debug);
     this.actions = actions;
     this.selectors = selectors;
   }
 
-  _createStore(reducers, middlevares, isDebug) {
+  _createStore(reducers, middlevares, debug) {
     let composeEnhancers =
-    (isDebug && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+    (debug && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
     || compose;
   
     let enhancer = composeEnhancers(applyMiddleware(...middlevares));
