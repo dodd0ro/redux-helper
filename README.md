@@ -2,7 +2,19 @@
 Инструмент помогающий при использовании redux сократить количество импортов и повторяющегося кода, не влияя на его реиспользуемость. 
 
 # Краткое руководство
+<!-- TOC -->
+  - [начало](#начало)
+  - [select](#select)
+  - [get](#get)
+  - [dispatch](#dispatch)
+  - [создание констант](#создание-констант)
+  - [наблюдатель](#наблюдатель)
+  - [debug и middlevares](#debug-и-middlevares)
+<!-- /TOC -->
+
 ## Начало
+<sup>[[к оглавлению]](#Краткое-руководство)</sup>
+
 Создание экземпляра ReduxHelper:
 ```js
 import reducers from './reducers';
@@ -17,6 +29,8 @@ var reduxHelper = new ReduxHelper({reducers, actions, selectors});
   - selectors - все ваши *селекторы*
 
 ## select
+<sup>[[к оглавлению]](#Краткое-руководство)</sup>
+
 Пример получения данных их *store* с помощью *селекторов* без использования storeHelper:
 ```js
 import store from './store';
@@ -43,6 +57,7 @@ var getBirds = storeHelper.selectors['getBirds'];
 var birds = storeHelper.select(getBirds);
 ```
 ## get
+<sup>[[к оглавлению]](#Краткое-руководство)</sup>
 
 Метод `get` позволяет получить данные из *state*:
 ```js
@@ -53,6 +68,7 @@ var x = storeHelper.get('animals.birds.parrots')
 
 
 ## dispatch
+<sup>[[к оглавлению]](#Краткое-руководство)</sup>
 
 Метод `dispatch` аналогичен стандартному `store.dispatch`, за исключеним того, что помимо самого *действия* может принимать путь *генеротора действия*:
 
@@ -62,6 +78,8 @@ storeHelper.dispatch(storeHelper.actions.animals.addFish('shark'))
 ```
 
 ## Создание констант
+<sup>[[к оглавлению]](#Краткое-руководство)</sup>
+
 Обычно константы создают так:
 ```js
 export default {
@@ -81,6 +99,8 @@ export default stingsToConstants([
 ```
 
 ## Наблюдатель
+<sup>[[к оглавлению]](#Краткое-руководство)</sup>
+
 Метод `observe` позволяет запускать указанную функцию каждый раз, когда меняется значение указанного *селектора*:
 ```js
 import storeHelper from './storeHelper';
@@ -120,6 +140,8 @@ unsubscribe = store.subscribe((color) => {
 
 
 ## debug и middlevares
+<sup>[[к оглавлению]](#Краткое-руководство)</sup>
+
 При создании экземпляра ReduxHelper в конфигурацию можно передать массив с *middlevares* и включить режим отладки (Redux DevTools):
 ```js
 import reducers from './reducers';
@@ -153,10 +175,11 @@ var store = createStore(reducers, enhancer);
 
 var storeHelper = new ReduxHelper({store, reducers, actions, selectors});
 ```
-
+<br><br>
+---
 
 # API
-# ReduxHelper(options) => {reducers, actions, selectors, middlevares, store, debug}
+# ReduxHelper(options)
 
 ## store
 
